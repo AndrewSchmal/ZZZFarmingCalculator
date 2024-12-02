@@ -1,13 +1,15 @@
-import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class ZZZFarmingTracker {
     public static void main(String[] args) {
         // Scanner for user input
         Scanner scanner = new Scanner(System.in);
 
-        // Step 1: Create a HashMap for characters and their elements
-        HashMap<String, String> characterElements = new HashMap<>();
+        // Step 1: Create a TreeMap for characters and their elements
+        TreeMap<String, String> characterElements = new TreeMap<>();
         characterElements.put("Anby", "Electric");
         characterElements.put("Anton", "Electric");
         characterElements.put("Ben", "Fire");
@@ -15,8 +17,8 @@ public class ZZZFarmingTracker {
         characterElements.put("Burnice", "Fire");
         characterElements.put("Caesar", "Physical");
         characterElements.put("Corin", "Physical");
-        characterElements.put("Ellen", "Ether");
-        characterElements.put("Grace", "Ice");
+        characterElements.put("Ellen", "Ice");
+        characterElements.put("Grace", "Electric");
         characterElements.put("Jane", "Physical");
         characterElements.put("Koleda", "Fire");
         characterElements.put("Lighter", "Fire");
@@ -33,10 +35,18 @@ public class ZZZFarmingTracker {
         characterElements.put("Yanagi", "Electric");
         characterElements.put("Zhu Yuan", "Ether");
 
-        // Step 2: Display all characters and ask the user to select one
+        // Step 2: Display the sorted list of characters, 3 per line
         System.out.println("Select a character by typing their name from the list below:");
+        int count = 0;
         for (String character : characterElements.keySet()) {
-            System.out.println("- " + character);
+            System.out.printf("%-15s", character); // Print characters in fixed-width columns
+            count++;
+            if (count % 3 == 0) {
+                System.out.println(); // Start a new line after every 3 characters
+            }
+        }
+        if (count % 3 != 0) {
+            System.out.println(); // Add a final new line if the last row isn't complete
         }
         System.out.print("Your choice: ");
         String selectedCharacter = scanner.nextLine();
@@ -91,29 +101,62 @@ public class ZZZFarmingTracker {
         // Loop through each skill and calculate the cost
         for (int i = 0; i < 5; i++) {
             for (int level = currentLevels[i]; level < targetLevels[i]; level++) {
-                if (level >= 1 && level < 7) {
-                    basicChips += 1;
-                    totalDennies += (level + 1) * 1000; // Dennies scale with level
-                } else if (level >= 7 && level < 10) {
-                    advancedChips += 1;
-                    totalDennies += (level + 1) * 5000; // Dennies scale more for higher levels
-                } else if (level >= 10 && level < 12) {
-                    specializedChips += 1;
-                    totalDennies += (level + 1) * 10000; // Dennies scale further for final levels
+                switch (level + 1) {
+                    case 2:
+                        basicChips += 2;
+                        totalDennies += 2000;
+                        break;
+                    case 3:
+                        basicChips += 3;
+                        totalDennies += 3000;
+                        break;
+                    case 4:
+                        advancedChips += 2;
+                        totalDennies += 6000;
+                        break;
+                    case 5:
+                        advancedChips += 3;
+                        totalDennies += 9000;
+                        break;
+                    case 6:
+                        advancedChips += 4;
+                        totalDennies += 12000;
+                        break;
+                    case 7:
+                        advancedChips += 6;
+                        totalDennies += 18000;
+                        break;
+                    case 8:
+                        specializedChips += 5;
+                        totalDennies += 45000;
+                        break;
+                    case 9:
+                        specializedChips += 8;
+                        totalDennies += 67500;
+                        break;
+                    case 10:
+                        specializedChips += 10;
+                        totalDennies += 90000;
+                        break;
+                    case 11:
+                        specializedChips += 12;
+                        totalDennies += 112500;
+                        break;
+                    case 12:
+                        specializedChips += 15;
+                        hamsterCages++;
+                        totalDennies += 135000;
+                        break;
                 }
             }
         }
 
-        // Add the Hamster Cage for max levels
-        for (int i = 0; i < 5; i++) {
-            if (targetLevels[i] == 12) {
-                hamsterCages++;
-            }
-        }
+        // Use DecimalFormat to format numbers with commas
+        DecimalFormat formatter = new DecimalFormat("#,###");
 
         // Display the results
         System.out.println("\nMaterials Needed:");
-        System.out.println("- Dennies: " + totalDennies);
+        System.out.println("- Dennies: " + formatter.format(totalDennies));
         System.out.println("- Basic " + element + " Chips: " + basicChips);
         System.out.println("- Advanced " + element + " Chips: " + advancedChips);
         System.out.println("- Specialized " + element + " Chips: " + specializedChips);
