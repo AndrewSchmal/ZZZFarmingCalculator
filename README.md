@@ -176,7 +176,7 @@ Potential Future Improvements
 
 ## Disclaimer
 
-I don't work for MiHoYo this is just a school project 
+I don't work for MiHoYo this is just a school project lol
 
 <p align="center">
   <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
@@ -184,9 +184,4 @@ I don't work for MiHoYo this is just a school project
   <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
   <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
   <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
-  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
-  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
-  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
-  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
-  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
-</p>
+  </p>
