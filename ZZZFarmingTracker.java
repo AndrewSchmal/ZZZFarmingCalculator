@@ -204,25 +204,31 @@ characterData.put("Zhu Yuan", new CharacterInfo("Ether", "Living Drive", "Unknow
 
         for (int level = currentCoreLevel; level < targetCoreLevel; level++) {
             switch (level + 1) {
+                // Core Skill A
                 case 1 -> totalDennies += 5000;
+                // Core Skill B
                 case 2 -> {
                     totalDennies += 12000;
                     totalExpertChallengeItems += 2;
                 }
+                // Core Skill C
                 case 3 -> {
                     totalDennies += 28000;
                     totalExpertChallengeItems += 4;
                 }
+                // Core Skill D
                 case 4 -> {
                     totalDennies += 60000;
                     totalExpertChallengeItems += 9;
                     totalNotoriousHuntItems += 2;
                 }
+                // Core Skill E
                 case 5 -> {
                     totalDennies += 100000;
                     totalExpertChallengeItems += 15;
                     totalNotoriousHuntItems += 3;
                 }
+                // Core Skill F
                 case 6 -> {
                     totalDennies += 200000;
                     totalExpertChallengeItems += 30;
@@ -273,8 +279,8 @@ characterData.put("Zhu Yuan", new CharacterInfo("Ether", "Living Drive", "Unknow
     
         // Display the Core Skill materials and energy requirements
         System.out.println("- Dennies: " + formatter.format(totalDennies));
-        System.out.println("- Expert Challenge Items (" + characterInfo.expertChallengeItem + "): " + totalECItems);
-        System.out.println("- Notorious Hunt Items (" + characterInfo.notoriousHuntItem + "): " + totalNHItems);
+        System.out.println("- Expert Challenge Item: " + characterInfo.expertChallengeItem + ": x " + totalECItems);
+        System.out.println("- Notorious Hunt Item: " + characterInfo.notoriousHuntItem + ": x " + totalNHItems);
     
         System.out.println("\nThis will take you " + ecRunsRequired + " Expert Challenge runs against " + characterInfo.expertChallengeEnemy + ", for a total of " + ecEnergyRequired + " energy.");
         System.out.println("You need " + totalNHItems + " " + characterInfo.notoriousHuntItem + "s, which might take up to " + nhEnergyRequired + " energy.");
@@ -317,8 +323,11 @@ characterData.put("Zhu Yuan", new CharacterInfo("Ether", "Living Drive", "Unknow
     
         System.out.println("\nCombat Skills will take you between " + combatBestCaseDays + " and " + combatWorstCaseDays + " days, assuming you get chips only from Combat Simulations.");
         System.out.println("Core Skills will take you " + ecRunsRequired + " Expert Challenge runs (" + ecEnergyRequired + " energy) against " + characterInfo.expertChallengeEnemy + ".");
-        System.out.println("Core Notorious Hunts will require up to " + nhEnergyRequired + " energy.");
+        System.out.println("If using 'Pursuit to the Depths', " + totalNHItems + " Notorious Hunt runs against " + characterInfo.notoriousHuntEnemy + " will require up to " + nhEnergyRequired + " energy.");
         System.out.println("Total Energy Needed: " + (ecEnergyRequired + nhEnergyRequired + totalCombatCards * 20) + " energy (Combat + Core).");
+        System.out.println("If not using 'Pursuit to the Depths' for Notorious Hunt: " + (ecEnergyRequired + totalCombatCards * 20) + " energy required (Combat + Core).");
+
+        System.out.println("Using your daily 240 energy + 80 with the Tin Master Special coffee every day, farming all this will take you approximately " + ((ecEnergyRequired + nhEnergyRequired + totalCombatCards * 20)/320)  + " days.");
     }
     
 }
