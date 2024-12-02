@@ -6,6 +6,46 @@ The **ZZZ Farming Tracker** is a Java-based console application designed to help
 
 This was my final project for my ITCS-3112 - Design and Implementation of Object-Oriented Systems class at UNC Charlotte (I probably went too ham on this but oh well).
 
+## Download and Usage Instructions
+
+1. **Download the Project**  
+   Clone or download the repository from GitHub:  
+   [GitHub Repository - ZZZFarmingCalculator](https://github.com/AndrewSchmal/ZZZFarmingCalculator)
+
+2. **Set Up Your Environment**  
+   Ensure you have Java Development Kit (JDK 8 or higher) installed.  
+   If you're using Visual Studio Code, I recommend the [Coding Pack for Java](https://code.visualstudio.com/docs/languages/java), which includes VS Code, the JDK, and helpful Java extensions.
+
+3. **Compile and Run the Program**  
+   - Open `ZZZFarmingTracker.java` in your IDE or text editor.  
+   - Compile and run the program:  
+     - **Command Line:**  
+       ```bash
+       javac ZZZFarmingTracker.java
+       java ZZZFarmingTracker
+       ```
+     - **VS Code:** Right-click on the file and select **Run Java**.
+
+4. **Using the Program**  
+   - Follow the prompts to select a character, specify skill progressions, and calculate the materials and energy required.  
+   - The program will display the results clearly, including the estimated time and energy required.
+
+5. **Explore Additional Features**  
+   - For more detailed explanations and project features, read the full documentation in this repository’s [README.md](https://github.com/AndrewSchmal/ZZZFarmingCalculator/blob/main/README.md).
+
+### Object-Oriented Principles
+
+I made this project for my Object-Oriented Programming (OOP) class, so I kept the following OOP principles in mind while designing and implementing it:
+
+- **Encapsulation**: Each class has clearly defined attributes and methods that represent its responsibilities. For example, `CharacterInfo` encapsulates all data related to a character’s attributes and required materials.
+- **Abstraction**: Complex operations, such as calculating materials and energy requirements, are abstracted into methods like `calculateCombatMaterials` and `calculateCoreMaterials`, simplifying the logic for the user.
+- **Inheritance**: Although not heavily utilized in this project, the program demonstrates how shared properties and behaviors could be extended if a hierarchy of characters or materials were introduced in the future.
+- **Polymorphism**: The program leverages method parameters to handle varying input and calculations, making it flexible for different scenarios, such as "Combat," "Core," or "Both" skill progressions.
+- **Modularity**: Each class, such as `Materials` or `CharacterInfo`, is designed with a single responsibility, making the code easier to maintain and extend.
+
+These principles helped ensure the program is both functional and scalable while maintaining clean, readable code.
+
+
 ## Features
 
 1. **Character Information:**
