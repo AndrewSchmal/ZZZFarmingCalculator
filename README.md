@@ -171,3 +171,13 @@ Potential Future Improvements
     Add support for other farming scenarios (e.g., level cap materials, core skill variations).
     Implement a GUI for easier interaction.
     Store user profiles to save progress across sessions.
+
+
+
+## Disclaimer
+
+I don't work for MiHoYo this is just a school project 
+
+![EllenSpin](EllenSpin.gif)
+![EllenSpin](EllenSpin.gif)
+![EllenSpin](EllenSpin.gif)
