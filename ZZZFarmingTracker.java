@@ -236,44 +236,92 @@ characterData.put("Zhu Yuan", new CharacterInfo("Ether", "Living Drive", "Unknow
 
     private static void displayCombatMaterials(int[] combatMaterials, String element) {
         DecimalFormat formatter = new DecimalFormat("#,###");
-        System.out.println("- Dennies: " + formatter.format(combatMaterials[0]));
-        System.out.println("- Basic " + element + " Chips: " + combatMaterials[1]);
-        System.out.println("- Advanced " + element + " Chips: " + combatMaterials[2]);
-        System.out.println("- Specialized " + element + " Chips: " + combatMaterials[3]);
+        
+        // Extract the combat materials
+        int totalDennies = combatMaterials[0];
+        int basicChips = combatMaterials[1];
+        int advancedChips = combatMaterials[2];
+        int specializedChips = combatMaterials[3];
+        
+        // Calculate the worst and best case energy requirements for Combat Skill Chips
+        int totalCards = basicChips + advancedChips + specializedChips;
+        int worstCaseDays = (int) Math.ceil(totalCards * 20.0 / 320);
+        int bestCaseDays = (int) Math.floor(totalCards * 20.0 / 320);
+    
+        // Display the Combat Skill materials and energy/days
+        System.out.println("- Dennies: " + formatter.format(totalDennies));
+        System.out.println("- Basic " + element + " Chips: " + basicChips);
+        System.out.println("- Advanced " + element + " Chips: " + advancedChips);
+        System.out.println("- Specialized " + element + " Chips: " + specializedChips);
+        System.out.println("This will take you between " + bestCaseDays + " and " + worstCaseDays + " days for the Combat Skill Chips, assuming you get chips only from Combat Simulations.");
     }
-
+    
     private static void displayCoreMaterials(int[] coreMaterials, CharacterInfo characterInfo) {
         DecimalFormat formatter = new DecimalFormat("#,###");
-        System.out.println("- Dennies: " + formatter.format(coreMaterials[0]));
-        System.out.println("- Expert Challenge Items (" + characterInfo.expertChallengeItem + "): " + coreMaterials[1]);
-        System.out.println("- Notorious Hunt Items (" + characterInfo.notoriousHuntItem + "): " + coreMaterials[2]);
-
-        // Calculate energy for Notorious Hunt and Expert Challenges
-        int nhEnergy = coreMaterials[2] * 60;
-        int ecEnergy = (int) Math.ceil(coreMaterials[1] / 5.0) * 40;
-        System.out.println("- Total Energy Needed for Core Skill: " + (nhEnergy + ecEnergy) + " (NH: " + nhEnergy + ", EC: " + ecEnergy + ")");
+    
+        // Extract the core materials
+        int totalDennies = coreMaterials[0];
+        int totalECItems = coreMaterials[1];
+        int totalNHItems = coreMaterials[2];
+    
+        // Calculate Expert Challenge energy and runs
+        int ecRunsRequired = (int) Math.ceil(totalECItems / 5.0);
+        int ecEnergyRequired = ecRunsRequired * 40;
+    
+        // Calculate Notorious Hunt energy
+        int nhEnergyRequired = totalNHItems * 60;
+    
+        // Display the Core Skill materials and energy requirements
+        System.out.println("- Dennies: " + formatter.format(totalDennies));
+        System.out.println("- Expert Challenge Items (" + characterInfo.expertChallengeItem + "): " + totalECItems);
+        System.out.println("- Notorious Hunt Items (" + characterInfo.notoriousHuntItem + "): " + totalNHItems);
+    
+        System.out.println("\nThis will take you " + ecRunsRequired + " Expert Challenge runs against " + characterInfo.expertChallengeEnemy + ", for a total of " + ecEnergyRequired + " energy.");
+        System.out.println("You need " + totalNHItems + " " + characterInfo.notoriousHuntItem + "s, which might take up to " + nhEnergyRequired + " energy.");
+        System.out.println("Total Core Skill Energy Needed: " + ecEnergyRequired + " Energy, up to " + (ecEnergyRequired + nhEnergyRequired) + " if \"Pursuit to the Depths\" is used for every Notorious Hunt item.");
     }
-
+    
     private static void displayCombinedMaterials(int[] combatMaterials, int[] coreMaterials, CharacterInfo characterInfo) {
         DecimalFormat formatter = new DecimalFormat("#,###");
-
+    
+        // Combine Dennies
         int totalDennies = combatMaterials[0] + coreMaterials[0];
+    
+        // Combine Combat Skill Chips
+        int totalBasicChips = combatMaterials[1];
+        int totalAdvancedChips = combatMaterials[2];
+        int totalSpecializedChips = combatMaterials[3];
+    
+        // Extract Core Skill data
+        int totalECItems = coreMaterials[1];
+        int totalNHItems = coreMaterials[2];
+    
+        // Calculate energy requirements for Combat Skill Chips
+        int totalCombatCards = totalBasicChips + totalAdvancedChips + totalSpecializedChips;
+        int combatWorstCaseDays = (int) Math.ceil(totalCombatCards * 20.0 / 320);
+        int combatBestCaseDays = (int) Math.floor(totalCombatCards * 20.0 / 320);
+    
+        // Calculate energy requirements for Core Skills
+        int ecRunsRequired = (int) Math.ceil(totalECItems / 5.0);
+        int ecEnergyRequired = ecRunsRequired * 40;
+        int nhEnergyRequired = totalNHItems * 60;
+    
+        // Display combined results
         System.out.println("- Total Dennies: " + formatter.format(totalDennies));
-
-        System.out.println("- Total Basic Chips: " + combatMaterials[1]);
-        System.out.println("- Total Advanced Chips: " + combatMaterials[2]);
-        System.out.println("- Total Specialized Chips: " + combatMaterials[3]);
-
-        System.out.println("- Total Expert Challenge Items (" + characterInfo.expertChallengeItem + "): " + coreMaterials[1]);
-        System.out.println("- Total Notorious Hunt Items (" + characterInfo.notoriousHuntItem + "): " + coreMaterials[2]);
-
-        int nhEnergy = coreMaterials[2] * 60;
-        int ecEnergy = (int) Math.ceil(coreMaterials[1] / 5.0) * 40;
-        int totalEnergy = nhEnergy + ecEnergy;
-        System.out.println("- Total Energy Needed: " + totalEnergy + " (NH: " + nhEnergy + ", EC: " + ecEnergy + ")");
+        System.out.println("- Total Basic Chips: " + totalBasicChips);
+        System.out.println("- Total Advanced Chips: " + totalAdvancedChips);
+        System.out.println("- Total Specialized Chips: " + totalSpecializedChips);
+    
+        System.out.println("- Total Expert Challenge Items (" + characterInfo.expertChallengeItem + "): " + totalECItems);
+        System.out.println("- Total Notorious Hunt Items (" + characterInfo.notoriousHuntItem + "): " + totalNHItems);
+    
+        System.out.println("\nCombat Skills will take you between " + combatBestCaseDays + " and " + combatWorstCaseDays + " days, assuming you get chips only from Combat Simulations.");
+        System.out.println("Core Skills will take you " + ecRunsRequired + " Expert Challenge runs (" + ecEnergyRequired + " energy) against " + characterInfo.expertChallengeEnemy + ".");
+        System.out.println("Core Notorious Hunts will require up to " + nhEnergyRequired + " energy.");
+        System.out.println("Total Energy Needed: " + (ecEnergyRequired + nhEnergyRequired + totalCombatCards * 20) + " energy (Combat + Core).");
     }
+    
 }
-
 class CharacterInfo {
     String element;
     String notoriousHuntItem;
@@ -289,45 +337,3 @@ class CharacterInfo {
         this.expertChallengeEnemy = expertChallengeEnemy;
     }
 }
-
-//         DecimalFormat formatter = new DecimalFormat("#,###");
-//         System.out.println("\nMaterials Needed:");
-//         System.out.println("- Dennies: " + formatter.format(totalDennies));
-//         System.out.println("- Basic " + element + " Chips: " + basicChips);
-//         System.out.println("- Advanced " + element + " Chips: " + advancedChips);
-//         System.out.println("- Specialized " + element + " Chips: " + specializedChips);
-//         System.out.println("- Hamster Cage Passes: " + hamsterCages);
-
-//         return new int[]{basicChips, advancedChips, specializedChips};
-//     }
-
-//     // Helper method to calculate energy requirements
-//     private static void calculateEnergyRequirements(int[] materials) {
-//         int specializedChips = materials[2];
-//         int advancedChips = materials[1];
-
-//         int worstCaseCards = (int) Math.ceil((double) specializedChips + advancedChips / 2.0);
-//         int bestCaseCards = (int) Math.ceil((double) specializedChips + advancedChips / 3.0);
-
-//         System.out.println("\nEnergy Requirements:");
-//         System.out.println("Worst case: " + worstCaseCards + " cards requiring " + (worstCaseCards * 20) + " energy.");
-//         System.out.println("Best case: " + bestCaseCards + " cards requiring " + (bestCaseCards * 20) + " energy.");
-//         System.out.println("This will take between " 
-//             + (int) Math.ceil(worstCaseCards * 20 / 320.0) 
-//             + " and " 
-//             + (int) Math.ceil(bestCaseCards * 20 / 320.0) 
-//             + " days, give or take, assuming you use all 240 energy per day plus get the Tin Master Special Coffee for +80 energy.");
-//     }
-
-//     // Helper method to convert an integer array to a string for display
-//     private static String arrayToString(int[] array) {
-//         StringBuilder result = new StringBuilder();
-//         for (int i = 0; i < array.length; i++) {
-//             result.append(array[i]);
-//             if (i < array.length - 1) {
-//                 result.append(" ");
-//             }
-//         }
-//         return result.toString();
-//     }
-// }
