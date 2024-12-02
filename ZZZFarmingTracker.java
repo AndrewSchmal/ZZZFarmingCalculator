@@ -1,4 +1,4 @@
-import java.util.Map;
+// import java.util.Map;
 import java.util.TreeMap;
 import java.util.Scanner;
 import java.text.DecimalFormat;
@@ -7,6 +7,8 @@ public class ZZZFarmingTracker {
     public static void main(String[] args) {
         // Scanner for user input
         Scanner scanner = new Scanner(System.in);
+
+    
 
         // Step 1: Create a TreeMap for characters and their elements
         TreeMap<String, String> characterElements = new TreeMap<>();
@@ -51,15 +53,21 @@ public class ZZZFarmingTracker {
         System.out.print("Your choice: ");
         String selectedCharacter = scanner.nextLine();
 
+        // Convert user input to lowercase and find a matching key in the TreeMap
+        String matchedCharacter = characterElements.keySet().stream()
+            .filter(name -> name.equalsIgnoreCase(selectedCharacter))
+            .findFirst()
+            .orElse(null);
+
         // Validate the character choice
-        if (!characterElements.containsKey(selectedCharacter)) {
+        if (matchedCharacter == null) {
             System.out.println("Invalid character name. Please restart the program and try again.");
             scanner.close();
             return;
         }
 
-        // Step 3: Get the selected character's element
-        String characterElement = characterElements.get(selectedCharacter);
+        // Get the element of the matched character
+        String characterElement = characterElements.get(matchedCharacter);
 
         // Step 4: Ask for current skill levels
         System.out.println("\nEnter the current levels of your 5 skills (Basic, Dodge, Assist, Special Attack, Chain Attack).");
@@ -90,7 +98,7 @@ public class ZZZFarmingTracker {
         }
 
         // Step 6: Display the required materials
-        System.out.println("\nYou selected character: " + selectedCharacter + " (" + characterElement + " Element)");
+        System.out.println("\nYou selected character: " + matchedCharacter + " (" + characterElement + " Element)");
         System.out.println("Current skill levels: " + arrayToString(currentLevels));
         System.out.println("Target skill levels: " + arrayToString(targetLevels));
 
@@ -185,6 +193,11 @@ public class ZZZFarmingTracker {
         System.out.println("\nEnergy Requirements:");
         System.out.println("Worst case: " + worstCaseCards + " cards requiring " + (worstCaseCards * 20) + " energy.");
         System.out.println("Best case: " + bestCaseCards + " cards requiring " + (bestCaseCards * 20) + " energy.");
+        System.out.println("This will take between " 
+            + (int) Math.ceil(worstCaseCards * 20 / 320.0) 
+            + " and " 
+            + (int) Math.ceil(bestCaseCards * 20 / 320.0) 
+            + " days, give or take, assuming you use all 240 energy per day plus get the Tin Master Special Coffee for +80 energy.");
     }
 
     // Helper method to convert an integer array to a string for display
