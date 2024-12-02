@@ -178,6 +178,15 @@ Potential Future Improvements
 
 I don't work for MiHoYo this is just a school project 
 
-![EllenSpin](EllenSpin.gif)
-![EllenSpin](EllenSpin.gif)
-![EllenSpin](EllenSpin.gif)
+<p align="center">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+  <img src="EllenSpin.gif" alt="Ellen Spin" width="100" height="100">
+</p>
